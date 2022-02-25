@@ -1,0 +1,2 @@
+- Copy data into geoserver database
+- Design the whole structure for WebGIS-Sever
