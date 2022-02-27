@@ -3,10 +3,12 @@ package com.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet(name = "WebgisServlet")
 public class WebgisServlet extends HttpServlet {
     
     @Override
@@ -14,7 +16,9 @@ public class WebgisServlet extends HttpServlet {
 
         resp.setContentType("text/html");
 
-        resp.getWriter().println("<h>WebGISServlet</h>");;
+        resp.getWriter().println("<h>WebGISSecancuineunciqnciqnciqnciqncirvlet</h>");;
+
+        // resp
 
     }
 }

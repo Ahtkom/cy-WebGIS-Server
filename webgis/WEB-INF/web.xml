@@ -4,11 +4,20 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>MyServlet</servlet-name>
-        <servlet-class>MyServlet</servlet-class>
+        <servlet-name>WebgisServlet</servlet-name>
+        <servlet-class>com.servlet.WebgisServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <servlet-name>WebgisServlet</servlet-name>
+        <url-pattern>/WebgisServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>account</servlet-name>
+        <servlet-class>com.servlet.AccountCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>account</servlet-name>
+        <url-pattern>/account</url-pattern>
     </servlet-mapping>
 </web-app>
