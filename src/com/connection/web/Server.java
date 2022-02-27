@@ -39,11 +39,11 @@ public class Server {
     }
 
     public void exec() {
-        initialize();
+        this.initialize();
         if (serverSocket != null) {
             while (true) {
                 try {
-                    String outputString = getOutputString();
+                    String outputString = this.getOutputString();
                     log(outputString);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -72,7 +72,7 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            close();
+            this.close();
         }
 
         return outputString;

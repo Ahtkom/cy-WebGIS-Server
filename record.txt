@@ -3,4 +3,6 @@ General Guidance:
     https://github.com/kkyyhh96/WebGIS
 
 Tomcat:
-    https://linuxize.com/post/how-to-install-tomcat-9-on-ubuntu-18-04/
+    Download and Configuration: https://linuxize.com/post/how-to-install-tomcat-9-on-ubuntu-18-04/
+
+    Deployment: https://www.studytonight.com/servlet/steps-to-create-servlet-using-tomcat-server.php
