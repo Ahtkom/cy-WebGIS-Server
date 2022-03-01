@@ -15,7 +15,7 @@ import javax.sql.*;
 
 import com.google.gson.Gson;
 
-public class ProvinceSelectorServlet extends HttpServlet {
+public class LocationSelectorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,11 +23,12 @@ public class ProvinceSelectorServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
 
         String provinceID = req.getParameter("provinceID");
+        String cityID = req.getParameter("cityID");
         String provinceName = null;
+        // String cityName = null;
 
         DataSource ds = null;
         Connection conn = null;
-        ArrayList<City> arrayList = new ArrayList<City>();
         try {
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
@@ -35,17 +36,37 @@ public class ProvinceSelectorServlet extends HttpServlet {
             conn = ds.getConnection();
             if (conn != null) {
                 Statement st = conn.createStatement();
-                ResultSet rs = st.executeQuery("SELECT name FROM prov where id = " + provinceID + ";");
+                ResultSet rs = st.executeQuery("SELECT name FROM prov where id = "+provinceID+";");
                 while (rs.next()) {
                     // Get province name from database by id
                     provinceName = rs.getString(1);
                 }
-                // resp.getWriter().println("select name, id from " + provinceID + ";");
-                rs = st.executeQuery("select name, id from " + provinceName + ";");
 
+                if (cityID.isEmpty()) { // Response all cities in given province 
+                    ArrayList<City> cities = new ArrayList<City>();
 
-                while (rs.next()) {
-                    arrayList.add(new City(rs.getString(1), rs.getInt(2)));
+                    rs = st.executeQuery("select name, id from "+provinceName+";");
+                    while (rs.next()) {
+                        cities.add(new City(rs.getString(1), rs.getInt(2)));
+                    }
+
+                    Gson cityGson = new Gson();
+                    Gson provinceGson = new Gson();
+                    String citiesJson = cityGson.toJson(cities);
+                    String provinceJson = provinceGson.toJson(
+                        new Province(provinceName, Integer.parseInt(provinceID)));
+
+                    resp.getWriter().println("{\"province\":"+provinceJson+",\"cities\":"+citiesJson+"}");
+                } else { // Response the sepcific city info
+                    rs = st.executeQuery("select name, id from "+provinceName+" where id = "+cityID+";");
+                    City city = null;
+
+                    while (rs.next()) {
+                        city = new City(rs.getString(1), rs.getInt(2));
+                    }
+
+                    Gson cityGson = new Gson();
+                    resp.getWriter().println(cityGson.toJson(city));
                 }
                 rs.close();
                 st.close();
@@ -54,16 +75,6 @@ public class ProvinceSelectorServlet extends HttpServlet {
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
         }
-
-        Gson cities = new Gson();
-        String citiesJson = cities.toJson(arrayList);
-
-        // resp.getWriter().println(citiesJson);
-
-        Gson province = new Gson();
-        String provinceJson = province.toJson(new Province(provinceName, Integer.parseInt(provinceID)));
-
-        resp.getWriter().println("{\"province\":" + provinceJson + ",\"cities\":" + citiesJson + "}");
     }
 }
 

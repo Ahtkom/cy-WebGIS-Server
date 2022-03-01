@@ -21,15 +21,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>account</servlet-name>
-        <servlet-class>com.servlet.AccountCheckServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>account</servlet-name>
-        <url-pattern>/account</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ProvinceLoaderServlet</servlet-name>
         <servlet-class>com.servlet.ProvinceLoaderServlet</servlet-class>
     </servlet>
@@ -39,11 +30,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ProvinceSelectorServlet</servlet-name>
-        <servlet-class>com.servlet.ProvinceSelectorServlet</servlet-class>
+        <servlet-name>LocationSelectorServlet</servlet-name>
+        <servlet-class>com.servlet.LocationSelectorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ProvinceSelectorServlet</servlet-name>
+        <servlet-name>LocationSelectorServlet</servlet-name>
         <url-pattern>/data/district/city</url-pattern>
     </servlet-mapping>
 

@@ -1,7 +1,6 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

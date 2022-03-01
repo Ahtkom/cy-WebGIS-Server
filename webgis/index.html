@@ -1,0 +1,76 @@
+<head>
+    <title>CY-WebGIS-Test</title>
+    <link rel="shortcut icon" href="./icon/ycy.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.13.0/build/ol.js"></script>
+    <style>
+        a.skiplink {
+          position: absolute;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 0;
+          border: 0;
+          height: 1px;
+          width: 1px;
+          overflow: hidden;
+        }
+
+        .map {
+            height: 500px;
+            width: 70%;
+        }
+        a.skiplink:focus {
+            clip: auto;
+            height: auto;
+            width: auto;
+            background-color: #fff;
+            padding: 0.3em;
+        }
+        #map:focus {
+            outline: #4A74A8 solid 0.15em;
+        }
+
+        .ol-mouse-position {
+            position: absolute;
+            top: 668px;
+            right: 430px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <h2>Select your current location I will give you a special gift.</h2>
+
+    <form>
+        <select name="provinceSelector" id="select_province" onchange="selectProvince(this.value)">
+            <option value=-1>--请选择--</option>
+        </select>
+    </form>
+
+    <form>
+        <select name="citySelector" id="select_city" onchange="selectCity(this.value)">
+            <option value=-1>--请选择--</option>
+        </select>
+    </form>
+
+    <button onclick="surprise();">Get Gift</button>
+    <br><br><br>
+    <center>
+        <div id="map" class="map" tabindex="0">
+        </div>
+    </center>
+    <div id="mousepos" class="ol-mouse-position"></div>
+    <br>
+    <center>
+        <button id="zoom-out">Zoom out</button>
+        <button id="zoom-in">Zoom in</button>
+    </center>
+
+    <script src="./js/selectLocation.js"></script>
+
+    <script src="./js/map/mainMap.js"></script>
+    <script type="module" src="./js/test/displayPoint.js"></script>
+    <!-- <%-- <script src="./js/map/displayLonLat.js"></script> --%> -->
+    
+</body>
+</html>
