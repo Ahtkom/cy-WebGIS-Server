@@ -1,7 +1,8 @@
-- Copy data into geoserver database
 - Design the whole structure for WebGIS-Sever
+    - Learn JavaWeb(HTTP, HTML, CSS, Java Script, JSP, Java, Tomcat) 
+    - Check current mature front-end displaying patterns and design our webpage forms
+    - Figure out the main computational tasks and decide their division
 
+//- Deploy the service in the cloud
 
-
-
-- Deploy JavaWeb in the cloud
+- Copy data into geoserver database

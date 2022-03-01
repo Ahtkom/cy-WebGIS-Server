@@ -3,6 +3,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <resource-ref>
+        <description>postgreSQL Datasource</description>
+        <res-ref-name>jdbc/postgres</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
     <servlet>
         <servlet-name>WebgisServlet</servlet-name>
         <servlet-class>com.servlet.WebgisServlet</servlet-class>
@@ -20,4 +28,23 @@
         <servlet-name>account</servlet-name>
         <url-pattern>/account</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProvinceLoaderServlet</servlet-name>
+        <servlet-class>com.servlet.ProvinceLoaderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProvinceLoaderServlet</servlet-name>
+        <url-pattern>/data/district/province</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProvinceSelectorServlet</servlet-name>
+        <servlet-class>com.servlet.ProvinceSelectorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProvinceSelectorServlet</servlet-name>
+        <url-pattern>/data/district/city</url-pattern>
+    </servlet-mapping>
+
 </web-app>

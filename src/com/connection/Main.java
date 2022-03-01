@@ -1,4 +1,4 @@
-package com;
+package com.connection;
 
 import com.connection.web.WebgisServer;
 
