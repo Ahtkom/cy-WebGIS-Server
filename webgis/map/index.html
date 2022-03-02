@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/icon/ycy.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Using OpenLayers with Vite</title>
+    <title>我是大帅哥</title>
 
     <style>
-      .map {
-        height: 500px;
-        width: 600px;
-      }
+        .map {
+            height: 100%;
+            width: 100%;
+        }
+
+        .marker {
+            width: 5px;
+            height: 5px;
+            border: 1px solid rgb(22, 116, 218);
+            border-radius: 10px;
+            background-color: rgb(51, 136, 255);
+            opacity: 1;
+        }
     </style>
 
-  </head>
-  <body>
-    <div id="map" class="map"></div>
+</head>
+<body>
+    <!-- <div> -->
+        <div id="map" class="map"></div>
+        <div id="billiard_rooms"></div>
+        <!-- <div id="wuhan_marker" class="marker"></div> -->
+        <div id="markers"></div>
+        <!-- <div id="marker0" class="marker"></div> -->
+
+    <!-- </div> -->
     <script type="module" src="./main.js"></script>
-  </body>
+
+
+    <button id="play_billiards" onclick="selectBilliardRoom();">I want to play billiards!</button>
+</body>
 </html>

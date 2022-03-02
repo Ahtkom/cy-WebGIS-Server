@@ -1,7 +1,7 @@
 <Context>
 <Resource name="jdbc/postgres" auth="Container"
           type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
-          url="jdbc:postgresql://47.97.207.109:5432/province"
+          url="jdbc:postgresql://47.97.207.109:5432/webgis"
           username="postgres" password="wusi04bawu25jiu" maxTotal="20" maxIdle="10"
           maxWaitMillis="-1"/>
 </Context>

@@ -38,4 +38,15 @@
         <url-pattern>/data/district/city</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>PointRequestServlet</servlet-name>
+        <servlet-class>com.servlet.PointRequestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PointRequestServlet</servlet-name>
+        <url-pattern>/data/point</url-pattern>
+    </servlet-mapping>
+    
+
 </web-app>

@@ -6,3 +6,6 @@
 //- Deploy the service in the cloud
 
 - Copy data into geoserver database
+
+
+- Try the visualization of geometry features in openlayers
