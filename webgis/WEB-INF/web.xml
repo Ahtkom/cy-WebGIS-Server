@@ -47,6 +47,15 @@
         <servlet-name>PointRequestServlet</servlet-name>
         <url-pattern>/data/point</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BilliardRoomLoaderServlet</servlet-name>
+        <servlet-class>com.servlet.BilliardRoomLoaderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BilliardRoomLoaderServlet</servlet-name>
+        <url-pattern>/data/billiards</url-pattern>
+    </servlet-mapping>
     
 
 </web-app>

@@ -1,6 +1,6 @@
 # Copy webgis/ to webapps/
 rm -rf /opt/tomcat/latest/webapps/webgis/
-cp -r webgis/ /opt/tomcat/latest/webapps/
+cp -r /home/Ahtkom/pmk/project/cy-WebGIS-Server/webgis/ /opt/tomcat/latest/webapps/
 
 # Compile java files
 javac -cp "/opt/tomcat/apache-tomcat-9.0.58/lib/servlet-api.jar:/opt/tomcat/apache-tomcat-9.0.58/lib/postgresql-42.3.0.jar:/home/Ahtkom/pmk/project/cy-WebGIS-Server/webgis/WEB-INF/lib/gson-2.8.2.jar" -d /opt/tomcat/latest/webapps/webgis/WEB-INF/classes/ /home/Ahtkom/pmk/project/cy-WebGIS-Server/src/com/servlet/*.java

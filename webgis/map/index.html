@@ -4,14 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="../assets/icon/ycy.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>我是大帅哥</title>
+    <title>我为什么可以这么帅这么强，唉</title>
 
     <style>
-        .map {
-            height: 100%;
-            width: 100%;
-        }
-
         .marker {
             width: 5px;
             height: 5px;
@@ -20,21 +15,47 @@
             background-color: rgb(51, 136, 255);
             opacity: 1;
         }
+
+        .mouseposition {
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            /* top: 782px; */
+            /* right: 465px; */
+        }
+
+        .box {
+            color: #fff;
+            width: 400px;
+            height: 200px;
+            background-color: #40527e;
+            display: none;
+            flex-direction: column;
+            border-radius: 10px;
+            align-items: center;
+            padding-top: 50px;
+            box-sizing: border-box;
+            position: absolute;
+            top: 200px;
+            cursor: move;
+        }
     </style>
 
 </head>
 <body>
-    <!-- <div> -->
-        <div id="map" class="map"></div>
-        <div id="billiard_rooms"></div>
-        <!-- <div id="wuhan_marker" class="marker"></div> -->
-        <div id="markers"></div>
-        <!-- <div id="marker0" class="marker"></div> -->
+    <center>
+        <h2 style="color: #CBA7F9;">Choose your service</h2>
+        <div>
+            <div id="ppp"></div>
+        </div>
+    </center>
+    <div id="map"></div>
+    <div id="billiard_rooms"></div>
+    <div id="mousepos" class="mouseposition"></div>
+    <div id="locator"></div>
+    <div id="billiard_room_info"></div>
 
-    <!-- </div> -->
     <script type="module" src="./main.js"></script>
 
-
-    <button id="play_billiards" onclick="selectBilliardRoom();">I want to play billiards!</button>
 </body>
 </html>

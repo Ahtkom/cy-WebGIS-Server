@@ -14,9 +14,15 @@ import OSM from 'ol/source/OSM';
 import { fromLonLat, toLonLat, transform } from 'ol/proj';
 import Overlay from 'ol/Overlay';
 
-function selectBilliardRoom() {
-    let map = document.getElementById("map");
+document.getElementById("ppp").innerHTML =
+'<button id="play_billiards">I want to play billiards!</button>';
+
+document.getElementById("play_billiards").onclick = function () {
+    // let map = document.getElementById("map");
     var overlays = [];
+
+    // <!--  -->
+
 
     // Change the style of mouse
     map.onmouseover = () => {
@@ -31,6 +37,12 @@ function selectBilliardRoom() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+
+            // resp json form:
+            // [
+            //   {"name":___, "lon":___, "lat":___, "dist":___},
+            //   ...,
+            // ]
             const rooms = JSON.parse(xhr.responseText);
             
             let rooms_div = document.getElementById("billiard_rooms");
@@ -57,14 +69,14 @@ function selectBilliardRoom() {
             }
         }
     };
-    map.on("click", (evt) => {
+    map.on("singleclick", (evt) => {
         // Remove original overlays
         for (let i = 0; i < overlays.length; i++) {
             map.removeOverlay(overlays[i]);
         }
 
-        const lon, lat = toLonLat(evt.coordinate, "EPSG:3857");
-        xhr.open("GET", "?lon="+lon+"&lat="+lat);
+        const lonlat = toLonLat(evt.coordinate, "EPSG:3857");
+        xhr.open("GET", "/webgis/data/billiards?lon="+lonlat[0]+"&lat="+lonlat[1]);
         xhr.send();
     });
 
