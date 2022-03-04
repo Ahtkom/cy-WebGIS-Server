@@ -5,7 +5,7 @@ import { map } from "./createMap";
 /**
  * @abstract Provide billiard rooms selection service, user can click the `I
  * Want to Play Billiards!` button to enter the selection mode, then click the
- * map to set your location, nearby billiard rooms will show up.
+ * map to set current location, nearby billiard rooms will show up.
  * 
  * Double click the map can leave the selection mode.
  */
@@ -13,21 +13,21 @@ export function playBilliards() {
     var inSelectMode = false;       // Whether in selection mode
     var overlays = [];              // Map overlays
     var locator = null;             // Locator(overlay) for user's location
-    var xhr = new XMLHttpRequest(); // Sned HTTP request
+    var xhr = new XMLHttpRequest(); // Send HTTP request
 
-    // Click the button to enter or leave the selection mode
+    // Click the button to enter the selection mode
     $("#play_billiards").on("click", function () {
         if (!inSelectMode) {
             // Update selection mode
             inSelectMode = true;
 
-            // Change the style of mouse
+            // Change the style of mouse(as locator)
             $("#map").css("cursor", "url(http://ahtkom.com:8080/webgis/assets/icon/bangzi.ico),auto");
 
             // Get response from server and load overlays on map
             xhr.onreadystatechange = () => {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    // resp json form:
+                    // response json form:
                     // [
                     //   {"name":___, "lon":___, "lat":___, "dist":___},
                     //   ...,
