@@ -1,7 +1,5 @@
 import { toLonLat } from "ol/proj";
 import { toStringXY } from "ol/coordinate";
-import Map from "ol/Map";
-
 import {map} from "./createMap";
 
 export function addMapEventPointerMove() {

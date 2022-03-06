@@ -1,2 +1,4 @@
 .vscode
-run
+*.txt
+*.sh
+update.py

@@ -1,76 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>CY-WebGIS-Test</title>
-    <link rel="shortcut icon" href="./icon/ycy.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.13.0/build/ol.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆界面</title>
+    <link rel="shortcut icon" href="./assets/icon/ycy.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        a.skiplink {
-          position: absolute;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 0;
-          border: 0;
-          height: 1px;
-          width: 1px;
-          overflow: hidden;
-        }
-
-        .map {
-            height: 500px;
-            width: 70%;
-        }
-        a.skiplink:focus {
-            clip: auto;
-            height: auto;
-            width: auto;
-            background-color: #fff;
-            padding: 0.3em;
-        }
-        #map:focus {
-            outline: #4A74A8 solid 0.15em;
-        }
-
-        .ol-mouse-position {
-            position: absolute;
-            top: 668px;
-            right: 430px;
-        }
     </style>
-
-
 </head>
 <body>
-    <h2>Select your current location I will give you a special gift.</h2>
-
-    <form>
-        <select name="provinceSelector" id="select_province" onchange="selectProvince(this.value)">
-            <option value=-1>--请选择--</option>
-        </select>
-    </form>
-
-    <form>
-        <select name="citySelector" id="select_city" onchange="selectCity(this.value)">
-            <option value=-1>--请选择--</option>
-        </select>
-    </form>
-
-    <button onclick="surprise();">Get Gift</button>
-    <br><br><br>
-    <center>
-        <div id="map" class="map" tabindex="0">
-        </div>
-    </center>
-    <div id="mousepos" class="ol-mouse-position"></div>
-    <br>
-    <center>
-        <button id="zoom-out">Zoom out</button>
-        <button id="zoom-in">Zoom in</button>
-    </center>
-
-    <script src="./js/selectLocation.js"></script>
-
-    <script src="./js/map/mainMap.js"></script>
-    <script type="module" src="./js/test/displayPoint.js"></script>
-    <!-- <%-- <script src="./js/map/displayLonLat.js"></script> --%> -->
+    <div id="login-window" style="align-content: center;">
+        User Name: <input type="text" id="user-name">
+        <br>
+        Password:  <input type="password" id="password">
+        <br>
+        <button id="login">Login</button>
+    </div>
     
+
+    <script>
+        var userName;
+        var password;
+
+        $("#user-name").on("change", function() {
+            userName = $("#user-name").val();
+        });
+
+        $("#password").on("change", function() {
+            password = $("#password").val();
+        });
+
+        $("#login").on("click", function() {
+            console.log(userName, password);
+
+            window.location.replace("http://ahtkom.com:8080/webgis/map/dist/");
+        });
+    </script>
 </body>
 </html>

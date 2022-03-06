@@ -1,6 +1,7 @@
 import { fromLonLat, toLonLat } from "ol/proj";
 import Overlay from "ol/Overlay";
-import { map } from "./createMap";
+import { map } from "../initMap/createMap";
+
 
 /**
  * @abstract Provide billiard rooms selection service, user can click the `I
@@ -63,7 +64,6 @@ export function playBilliards() {
                                     '</div></center></div>'
                                 );
                                 $("#box")
-                                    .css("position", "absolute")
                                     .css("position", "absolute")
                                     .css("left", (evt.pageX - 100) + "px")
                                     .css("top", (evt.pageY - 130) + "px")
