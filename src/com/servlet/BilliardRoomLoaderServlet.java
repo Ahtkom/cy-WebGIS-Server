@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.ArrayList;
 
+// import com.operator.PointInfo;
+
 import javax.sql.DataSource;
 
 import com.google.gson.Gson;
+import com.operator.DistanceSelector;
+import com.operator.PointInfo;
 
 
 public class BilliardRoomLoaderServlet extends HttpServlet {
@@ -23,7 +27,7 @@ public class BilliardRoomLoaderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html;charset=UTF-8");
-
+        //#region
         double lon = Double.parseDouble(req.getParameter("lon"));
         double lat = Double.parseDouble(req.getParameter("lat"));
         String tableName = "eleschool";
@@ -32,30 +36,45 @@ public class BilliardRoomLoaderServlet extends HttpServlet {
 
         DataSource ds = null;
         Connection conn = null;
+        //#endregion
         try {
+            //#region
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
             ds = (DataSource) envContext.lookup("jdbc/postgres");
             conn = ds.getConnection();
+            //#endregion
             if (conn != null) {
                 Statement st = conn.createStatement();
 
-                String sql = "select name, st_x(geom), st_y(geom), " +
-                        "st_distance(geom, 'POINT(" + lon + " " + lat + ")'::geography, true) " +
-                        "from " + tableName +
-                        " where st_dwithin(geom, 'POINT(" + lon + " " + lat + ")'::geography, 10000);";
-
+                String sql = "select name, st_astext(geom) from " + tableName + ";";
                 ResultSet rs = st.executeQuery(sql);
+
+                ArrayList<PointInfo> schools = new ArrayList<PointInfo>();
                 while (rs.next()) {
-                    rooms.add(
-                        new RespBilliardRoom(
-                            rs.getString(1),
-                            rs.getDouble(2),
-                            rs.getDouble(3),
-                            rs.getDouble(4)
-                        )
-                    );
+                    schools.add(new PointInfo(rs.getString(1), rs.getString(2)));
                 }
+                // Gson gson = new Gson();
+                DistanceSelector distanceSelector = new DistanceSelector(lon, lat, 0.05, schools);
+
+                resp.getWriter().println(distanceSelector.select());
+
+                // String sql = "select name, st_x(geom), st_y(geom), " +
+                //         "st_distance(geom, 'POINT(" + lon + " " + lat + ")'::geography, true) " +
+                //         "from " + tableName +
+                //         " where st_dwithin(geom, 'POINT(" + lon + " " + lat + ")'::geography, 10000);";
+
+                // ResultSet rs = st.executeQuery(sql);
+                // while (rs.next()) {
+                //     rooms.add(
+                //         new RespBilliardRoom(
+                //             rs.getString(1),
+                //             rs.getDouble(2),
+                //             rs.getDouble(3),
+                //             rs.getDouble(4)
+                //         )
+                //     );
+                // }
                 rs.close();
                 st.close();
                 conn.close();
@@ -64,10 +83,10 @@ public class BilliardRoomLoaderServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        Gson gson = new Gson();
-        String json = gson.toJson(rooms);
+        // Gson gson = new Gson();
+        // String json = gson.toJson(rooms);
 
-        resp.getWriter().println(json);
+        // resp.getWriter().println(json);
     }
 }
 
@@ -81,9 +100,6 @@ class BilliardRoom {
         this.lon = lon;
         this.lat = lat;
     }
-
-    // double distanceFrom(double lon, double lat) {
-    // }
 }
 
 class RespBilliardRoom extends BilliardRoom {
@@ -94,3 +110,16 @@ class RespBilliardRoom extends BilliardRoom {
         this.dist = dist;
     }
 }
+
+
+// class School {
+//     String name;
+//     double lon, lat, dist;
+
+//     School(String name, double lon, double lat, double dist) {
+//         this.name = name;
+//         this.lon = lon;
+//         this.lat = lat;
+//         this.dist = dist;
+//     }
+// }

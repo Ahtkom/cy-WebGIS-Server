@@ -60,7 +60,8 @@ export function playBilliards() {
                                     '<div id="box"><center>' +
                                     '<div class="xx" id="billiard_room">' +
                                     '<div>' + room["name"] + '</div>' + '<br>' +
-                                    '<div>距离您：' + (room["dist"] / 1000).toFixed(3) + 'km</div>' +
+                                    // '<div>距离您：' + (room["dist"] / 1000).toFixed(3) + 'km</div>' +
+                                    '<div>距离您：' + (room["dist"]).toFixed(3) + 'm</div>' +
                                     '</div></center></div>'
                                 );
                                 $("#box")

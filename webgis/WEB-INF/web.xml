@@ -56,6 +56,15 @@
         <servlet-name>BilliardRoomLoaderServlet</servlet-name>
         <url-pattern>/data/billiards</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>JNITestServlet</servlet-name>
+        <servlet-class>com.servlet.JNITestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JNITestServlet</servlet-name>
+        <url-pattern>/jni/test</url-pattern>
+    </servlet-mapping>
     
 
 </web-app>

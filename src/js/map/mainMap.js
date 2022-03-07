@@ -31,11 +31,6 @@ map.on("pointermove", function (evt) {
     var lonlat = ol.proj.toLonLat(evt.coordinate, "EPSG:3857");
 
     document.getElementById("mousepos").innerHTML = ol.coordinate.toStringXY(lonlat, 3);
-
-    // console.log();
-    // console.log(pos);
-    // console.log(evt);
-    // console.log(ol.proj.getUserProjection(map));
 });
 
 // $("#map").on("pointermove", function (evt) {
