@@ -3,14 +3,14 @@
 #include <geos/geom/Geometry.h>
 #include <geos/geom/GeometryFactory.h>
 #include <geos/io/WKTReader.h>
-#include <com_operator_DistanceComputer.h>
+#include <com_billiard_operator_DistanceComputer.h>
 
 #include <string>
 
 using namespace geos;
 
 JNIEXPORT jdouble JNICALL
-Java_com_operator_DistanceComputer_getDistanceFromPoint(JNIEnv *env, jobject obj, jdouble x, jdouble y, jstring jwkt)
+Java_com_billiard_operator_DistanceComputer_getDistanceFromPoint(JNIEnv *env, jobject obj, jdouble x, jdouble y, jstring jwkt)
 {
     const char *wkt = env->GetStringUTFChars(jwkt, 0);
 

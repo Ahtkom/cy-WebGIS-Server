@@ -1,7 +1,8 @@
-package com.operator;
+package com.billiard.entity;
 
 public class PointInfo {
-    String name, wkt;
+    public String name;
+    public String wkt;
 
     public PointInfo(String name, String wkt) {
         this.name = name;

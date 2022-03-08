@@ -8,11 +8,11 @@
 extern "C" {
 #endif
 /*
- * Class:     com_operator_DistanceComputer
+ * Class:     com_billiard_operator_DistanceComputer
  * Method:    getDistanceFromPoint
  * Signature: (DDLjava/lang/String;)D
  */
-JNIEXPORT jdouble JNICALL Java_com_operator_DistanceComputer_getDistanceFromPoint
+JNIEXPORT jdouble JNICALL Java_com_billiard_operator_DistanceComputer_getDistanceFromPoint
   (JNIEnv *, jobject, jdouble, jdouble, jstring);
 
 #ifdef __cplusplus

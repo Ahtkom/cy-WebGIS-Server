@@ -1,4 +1,4 @@
-package com.servlet;
+package com.billiard.servlet;
 
 import java.io.IOException;
 import java.sql.*;

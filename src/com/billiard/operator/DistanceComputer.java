@@ -1,11 +1,9 @@
-package com.operator;
+package com.billiard.operator;
 
-/**
- * DistanceComputer
- */
+
 public class DistanceComputer {
     static {
-        System.loadLibrary("computer");
+        System.loadLibrary("webgis_native_c");
     }
 
     public native double getDistanceFromPoint(double x, double y, String wkt);

@@ -22,7 +22,7 @@
 
     <servlet>
         <servlet-name>ProvinceLoaderServlet</servlet-name>
-        <servlet-class>com.servlet.ProvinceLoaderServlet</servlet-class>
+        <servlet-class>com.billiard.servlet.ProvinceLoaderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProvinceLoaderServlet</servlet-name>
@@ -31,7 +31,7 @@
 
     <servlet>
         <servlet-name>LocationSelectorServlet</servlet-name>
-        <servlet-class>com.servlet.LocationSelectorServlet</servlet-class>
+        <servlet-class>com.billiard.servlet.LocationSelectorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LocationSelectorServlet</servlet-name>
@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>PointRequestServlet</servlet-name>
-        <servlet-class>com.servlet.PointRequestServlet</servlet-class>
+        <servlet-class>com.billiard.servlet.PointRequestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PointRequestServlet</servlet-name>
@@ -50,20 +50,11 @@
 
     <servlet>
         <servlet-name>BilliardRoomLoaderServlet</servlet-name>
-        <servlet-class>com.servlet.BilliardRoomLoaderServlet</servlet-class>
+        <servlet-class>com.billiard.servlet.BilliardRoomLoaderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BilliardRoomLoaderServlet</servlet-name>
         <url-pattern>/data/billiards</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>JNITestServlet</servlet-name>
-        <servlet-class>com.servlet.JNITestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>JNITestServlet</servlet-name>
-        <url-pattern>/jni/test</url-pattern>
     </servlet-mapping>
     
 

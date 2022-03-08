@@ -1,7 +1,9 @@
-package com.operator;
+package com.billiard.operator;
 
 import java.util.ArrayList;
 
+import com.billiard.entity.PointInfo;
+import com.billiard.entity.PointInfoWithDistance;
 import com.google.gson.Gson;
 
 
@@ -56,17 +58,5 @@ public class DistanceSelector {
     public String select() {
         selectByDistance();
         return new Gson().toJson(pointInfoWithDistances);
-    }
-}
-
-class PointInfoWithDistance {
-    String name;
-    double lon, lat, dist;
-
-    PointInfoWithDistance(String name, double lon, double lat, double dist) {
-        this.name = name;
-        this.lon = lon;
-        this.lat = lat;
-        this.dist = dist;
     }
 }
