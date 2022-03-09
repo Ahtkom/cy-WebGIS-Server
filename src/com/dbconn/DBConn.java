@@ -1,6 +1,5 @@
 package com.dbconn;
 
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +11,24 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+/**
+ * @apiNote DBConn encapsulated the initialization of database context
+ *          and datasource, the releases of connection, statement and resultset.
+ *          Providing an easy method to execute sql query based on java.sql API.
+ * 
+ * @example
+ *          DBConn dbConn = new DBConn();
+ *          dbConn.connect();
+ *          String result = dbConn.getQueryResult(sql: String);
+ *          dbConn.close();
+ */
 public class DBConn {
-    String sql;
-    Connection connection = null;
-    DataSource dataSource = null;
-    boolean isConnected = false;
 
+    private Connection connection = null;
+    private DataSource dataSource = null;
+    private boolean isConnected = false;
+
+    // Initialize connection from java database context
     public void connect() {
         if (!isConnected) {
             try {
@@ -32,6 +43,7 @@ public class DBConn {
         }
     }
 
+    // Release connection
     public void close() {
         if (isConnected) {
             try {
@@ -43,8 +55,9 @@ public class DBConn {
         }
     }
 
+    // Each row in ArrayList while each column in String[]
     public ArrayList<String[]> getQueryResult(String sql) {
-        ArrayList<String[]> res = new ArrayList<String[]>();
+        ArrayList<String[]> result = new ArrayList<String[]>();
         if (isConnected) {
             try {
                 Statement st = connection.createStatement();
@@ -54,16 +67,18 @@ public class DBConn {
                 while (rs.next()) {
                     String[] row = new String[columns];
                     for (int i = 1; i <= columns; i++) {
-                        Array.set(row, i - 1, rs.getString(i));
+                        // Array.set(row, i - 1, rs.getString(i));
+                        row[i - 1] = rs.getString(i);
                     }
-                    res.add(row);
+                    result.add(row);
                 }
+
                 rs.close();
                 st.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return res;
+        return result;
     }
 }

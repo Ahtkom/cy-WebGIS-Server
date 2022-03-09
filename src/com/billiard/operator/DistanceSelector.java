@@ -6,47 +6,43 @@ import com.billiard.entity.PointInfo;
 import com.billiard.entity.PointInfoWithDistance;
 import com.google.gson.Gson;
 
-
 /**
  * [{"name": str, "wkt": str}, ...] && {"wkt": str}
  * -> [{"name": str, "lon": double, "lat": double, "dist": double}, ...]
  * 
  * @example
- * DistanceSelector ds = new DistanceSelector(0, 0, 1000, json);
- * String newJson = ds.select();
+ *          DistanceSelector ds = new DistanceSelector(0, 0, 1000, json);
+ *          String newJson = ds.select();
  */
 public class DistanceSelector {
 
-    double x, y, threshold;
+    double threshold;
 
     ArrayList<PointInfo> pointInfos;
 
     ArrayList<PointInfoWithDistance> pointInfoWithDistances = new ArrayList<PointInfoWithDistance>();
 
-    DistanceComputer distanceComputer = new DistanceComputer();
+    DistanceComputer distanceComputer;
 
     public DistanceSelector(double x, double y, double threshold, ArrayList<PointInfo> pointInfos) {
-        this.x = x;
-        this.y = y;
+        this.distanceComputer = new DistanceComputer(x, y);
         this.threshold = threshold;
         this.pointInfos = pointInfos;
     }
 
     private void selectByDistance() {
         for (int i = 0; i < pointInfos.size(); i++) {
-
-            double dist = distanceComputer.getDistanceFromPoint(x, y, pointInfos.get(i).wkt);
+            double dist = distanceComputer.getDistanceFromPoint(pointInfos.get(i).getWkt());
 
             if (dist <= threshold) {
-                String[] lonlat = getLonLatFromPoint(pointInfos.get(i).wkt).split(" ");
+                String[] lonlat = getLonLatFromPoint(pointInfos.get(i).getWkt()).split(" ");
 
                 pointInfoWithDistances.add(
-                    new PointInfoWithDistance(
-                                pointInfos.get(i).name,
+                        new PointInfoWithDistance(
+                                pointInfos.get(i).getName(),
                                 Double.parseDouble(lonlat[0]),
                                 Double.parseDouble(lonlat[1]),
-                                dist)
-                );
+                                dist));
             }
         }
     }

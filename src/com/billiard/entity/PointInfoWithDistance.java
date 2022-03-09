@@ -1,8 +1,8 @@
 package com.billiard.entity;
 
 public class PointInfoWithDistance {
-    String name;
-    double lon, lat, dist;
+    private String name;
+    private double lon, lat, dist;
 
     public PointInfoWithDistance(String name, double lon, double lat, double dist) {
         this.name = name;
