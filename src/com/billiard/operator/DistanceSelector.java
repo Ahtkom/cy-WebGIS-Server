@@ -24,8 +24,8 @@ public class DistanceSelector {
 
     DistanceComputer distanceComputer;
 
-    public DistanceSelector(double x, double y, double threshold, ArrayList<PointInfo> pointInfos) {
-        this.distanceComputer = new DistanceComputer(x, y);
+    public DistanceSelector(String wkt, double threshold, ArrayList<PointInfo> pointInfos) {
+        this.distanceComputer = new DistanceComputer(wkt);
         this.threshold = threshold;
         this.pointInfos = pointInfos;
     }
@@ -35,7 +35,7 @@ public class DistanceSelector {
             double dist = distanceComputer.getDistanceFromPoint(pointInfos.get(i).getWkt());
 
             if (dist <= threshold) {
-                String[] lonlat = getLonLatFromPoint(pointInfos.get(i).getWkt()).split(" ");
+                String[] lonlat = getLonLatFromPoint(pointInfos.get(i).getWkt());
 
                 pointInfoWithDistances.add(
                         new PointInfoWithDistance(
@@ -47,8 +47,8 @@ public class DistanceSelector {
         }
     }
 
-    private String getLonLatFromPoint(String wkt) {
-        return wkt.substring(6).replace(")", "");
+    private String[] getLonLatFromPoint(String wkt) {
+        return wkt.substring(6).replace(")", "").split(" ");
     }
 
     public String select() {

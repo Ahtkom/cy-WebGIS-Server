@@ -1,6 +1,9 @@
 package com.billiard.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +30,22 @@ public class BilliardRoomLoaderServlet extends HttpServlet {
 
         DBConn dbConn = new DBConn();
         dbConn.connect();
-        String sql = "select name, st_astext(geom) from " + tableName + ";";
-        ArrayList<String[]> queryResult = dbConn.getQueryResult(sql);
+        
+        String sqlPoints = "select name, st_astext(st_transform(geom, 3857)) from " + tableName + ";";
+        ArrayList<String[]> queryResultPoints = dbConn.getQueryResult(sqlPoints);
+
+        String sqlTransform = "select st_astext(st_transform('srid=4326;POINT("
+                + lon + " " + lat + ")'::geometry, 3857));";
+        ArrayList<String[]> originPoint = dbConn.getQueryResult(sqlTransform);
+
         dbConn.close();
 
         ArrayList<PointInfo> schools = new ArrayList<PointInfo>();
-        for (int i = 0; i < queryResult.size(); i++) {
-            schools.add(new PointInfo(queryResult.get(i)[0], queryResult.get(i)[1]));
+        for (int i = 0; i < queryResultPoints.size(); i++) {
+            schools.add(new PointInfo(queryResultPoints.get(i)[0], queryResultPoints.get(i)[1]));
         }
 
-        DistanceSelector distanceSelector = new DistanceSelector(lon, lat, 0.05, schools);
+        DistanceSelector distanceSelector = new DistanceSelector(originPoint.get(0)[0], 5000, schools);
 
         resp.getWriter().println(distanceSelector.select());
 

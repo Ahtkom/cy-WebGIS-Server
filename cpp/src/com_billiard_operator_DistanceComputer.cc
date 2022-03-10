@@ -8,21 +8,37 @@
 
 using namespace geos;
 
-JNIEXPORT jdouble JNICALL Java_com_billiard_operator_DistanceComputer_getDistanceFromPoint
+jclass distance_computer_class;
+// jfieldID x_fid;
+// jfieldID y_fid;
+// double x;
+// double y;
+auto gf = geom::GeometryFactory::create();
+io::WKTReader reader(*gf);
+geom::Geometry::Ptr origin_point;
+
+JNIEXPORT void JNICALL
+Java_com_billiard_operator_DistanceComputer_static_1init
+  (JNIEnv *env, jclass clazz)
+{
+    distance_computer_class = clazz;
+}
+
+JNIEXPORT void JNICALL
+Java_com_billiard_operator_DistanceComputer_init
   (JNIEnv *env, jobject distance_computer, jstring jwkt)
 {
-    static jclass distance_computer_class = env->FindClass("com/billiard/operator/DistanceComputer");
-    static jfieldID x_fid = env->GetFieldID(distance_computer_class, "x", "D");
-    static jfieldID y_fid = env->GetFieldID(distance_computer_class, "y", "D");
-    static auto gf = geom::GeometryFactory::create();
-    static io::WKTReader reader(*gf);
+    const char *wkt = env->GetStringUTFChars(jwkt, 0);
 
-    double x = env->GetDoubleField(distance_computer, x_fid);
-    double y = env->GetDoubleField(distance_computer, y_fid);
-    
-    geom::Geometry::Ptr origin_point = reader.read(
-        "POINT(" + std::to_string(x) + " " + std::to_string(y) + ")");
+    origin_point = reader.read(wkt);
 
+    env->ReleaseStringUTFChars(jwkt, wkt);
+}
+
+JNIEXPORT jdouble JNICALL
+Java_com_billiard_operator_DistanceComputer_getDistanceFromPoint
+  (JNIEnv *env, jobject distance_computer, jstring jwkt)
+{
     const char *wkt = env->GetStringUTFChars(jwkt, 0);
 
     geom::Geometry::Ptr target_point = reader.read(wkt);

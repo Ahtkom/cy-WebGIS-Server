@@ -37,7 +37,8 @@ export function playBilliards() {
 
                     for (let idx in rooms) {
                         let room = rooms[idx];
-                        let coordinate = fromLonLat([room["lon"], room["lat"]]);
+                        // let coordinate = fromLonLat([room["lon"], room["lat"]]);
+                        let coordinate = [room["lon"], room["lat"]];
 
                         $("#billiard_rooms").append(
                             '<img src="http://ahtkom.com:8080/webgis/assets/icon/locator.ico" id="room' + idx + '">'
@@ -60,8 +61,8 @@ export function playBilliards() {
                                     '<div id="box"><center>' +
                                     '<div class="xx" id="billiard_room">' +
                                     '<div>' + room["name"] + '</div>' + '<br>' +
-                                    // '<div>距离您：' + (room["dist"] / 1000).toFixed(3) + 'km</div>' +
-                                    '<div>距离您：' + (room["dist"]).toFixed(3) + 'm</div>' +
+                                    '<div>距离您：' + (room["dist"] / 1000).toFixed(3) + 'km</div>' +
+                                    // '<div>距离您：' + (room["dist"]).toFixed(3) + 'm</div>' +
                                     '</div></center></div>'
                                 );
                                 $("#box")
