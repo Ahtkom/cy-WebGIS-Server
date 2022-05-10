@@ -23,7 +23,7 @@ export function playBilliards() {
             inSelectMode = true;
 
             // Change the style of mouse(as locator)
-            $("#map").css("cursor", "url(http://ahtkom.com:8080/webgis/assets/icon/bangzi.ico),auto");
+            $("#map").css("cursor", "url(https://ahtkom.com/webgis/assets/icon/bangzi.ico),auto");
 
             // Get response from server and load overlays on map
             xhr.onreadystatechange = () => {
@@ -41,7 +41,7 @@ export function playBilliards() {
                         let coordinate = [room["lon"], room["lat"]];
 
                         $("#billiard_rooms").append(
-                            '<img src="http://ahtkom.com:8080/webgis/assets/icon/locator.ico" id="room' + idx + '">'
+                            '<img src="https://ahtkom.com/webgis/assets/icon/locator.ico" id="room' + idx + '">'
                         );
 
                         overlays.push(
@@ -76,7 +76,7 @@ export function playBilliards() {
                                     .css("width", "200px")
                                     .css("paddingTop", "30px")
                                     .css("paddingBottom", "30px")
-                                    .css("backgroundImage", "url(http://ahtkom.com:9877/gallery/newsnooker.png)")
+                                    .css("backgroundImage", "url(https://ahtkom.com/webgis/assets/image/newsnooker.png)")
                                     .css("borderRadius", "15px");
                                 $("#billiard_room_info").on({
                                     mouseleave: () => {
@@ -114,7 +114,7 @@ export function playBilliards() {
         xhr.open("GET", "/webgis/data/billiards?lon="+lonlat[0]+"&lat="+lonlat[1]);
         xhr.send();
         
-        $("#locator").html('<img src="http://ahtkom.com:8080/webgis/assets/icon/bangzi.ico" id="locator_img">');
+        $("#locator").html('<img src="https://ahtkom.com/webgis/assets/icon/bangzi.ico" id="locator_img">');
         locator = new Overlay({
             position: evt.coordinate,
             positioning: "center-center",

@@ -10,6 +10,7 @@ public class DistanceComputer {
     public DistanceComputer(String wkt) {
         init(wkt);
     }
+
     
     private static native void static_init(); 
     

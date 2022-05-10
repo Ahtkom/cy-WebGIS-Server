@@ -6,8 +6,6 @@ import { fromLonLat } from "ol/proj";
 import { defaults as defaultInteractions } from "ol/interaction";
 
 
-console.log("cnaicn");
-
 export var map = new Map({
     target: 'map',
     layers: [
